@@ -6,6 +6,9 @@
 +      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 +        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-center">
            {stats.map((stat, index) => (
+)
+)
+}
 -            <div key={index}>
 -              <div className="text-4xl font-extrabold text-blue-600">{stat.value}</div>
 -              <div className="mt-2 text-base text-gray-600">{stat.label}</div>
