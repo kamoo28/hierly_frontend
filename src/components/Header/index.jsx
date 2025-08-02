@@ -261,15 +261,15 @@ const Header = () => {
     }`;
 
   return (
-    <header className="w-full py-3 px-6 bg-[#FFE5B4] shadow-md border-b border-orange-200 fixed z-10">
+    <header className="w-full py-4 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-50 to-orange-100 shadow-lg border-b border-orange-200 fixed z-50 backdrop-blur-sm bg-opacity-95">
   <nav className="flex items-center justify-between max-w-7xl mx-auto">
     {/* Logo */}
-    <NavLink to="/" className="text-2xl font-bold text-orange-800 tracking-tight">
+    <NavLink to="/" className="text-2xl sm:text-3xl font-bold text-orange-800 tracking-tight hover:text-orange-600 transition-colors duration-300">
       Hierly
     </NavLink>
 
     {/* Navigation Links */}
-    <ul className="flex space-x-6">
+    <ul className="hidden md:flex space-x-6 lg:space-x-8">
       <li>
         <NavLink to="/" className={navLinkClass}>
           Home
@@ -301,25 +301,27 @@ const Header = () => {
       <button
         onClick={handleLogout}
         disabled={isLoading}
-        className={`py-2 px-5 bg-red-500 text-white rounded-md font-semibold transition-opacity shadow-sm ${
+        className={`py-2 px-4 sm:px-5 bg-red-500 text-white rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:bg-red-600 text-sm sm:text-base ${
           isLoading ? "opacity-40" : "hover:opacity-90"
         }`}
       >
         Logout
       </button>
     ) : (
-      <div className="flex space-x-3">
+      <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
         <button
           onClick={() => navigate("/login/recruiter")}
-          className="py-2 px-5 bg-purple-600 text-white rounded-md font-semibold hover:opacity-90 shadow"
+          className="py-2 px-3 sm:px-5 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-all duration-300 shadow-md hover:shadow-lg text-xs sm:text-sm"
         >
-          Recruiter Login
+          <span className="hidden sm:inline">Recruiter Login</span>
+          <span className="sm:hidden">Recruiter</span>
         </button>
         <button
           onClick={() => navigate("/login/candidate")}
-          className="py-2 px-5 bg-green-600 text-white rounded-md font-semibold hover:opacity-90 shadow"
+          className="py-2 px-3 sm:px-5 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-all duration-300 shadow-md hover:shadow-lg text-xs sm:text-sm"
         >
-          Candidate Login
+          <span className="hidden sm:inline">Candidate Login</span>
+          <span className="sm:hidden">Candidate</span>
         </button>
       </div>
     )}

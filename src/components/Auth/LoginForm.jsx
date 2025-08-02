@@ -381,7 +381,7 @@ const LoginForm = ({ userType }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`relative p-10 sm:p-12 md:p-16 w-[95%] max-w-2xl rounded-3xl mx-auto mt-16 shadow-2xl backdrop-blur-lg border border-white/20 overflow-hidden group transition-all duration-300 ${
+      className={`relative p-6 sm:p-8 lg:p-12 w-full max-w-md lg:max-w-2xl rounded-3xl mx-auto mt-8 lg:mt-16 shadow-2xl backdrop-blur-lg border border-white/20 overflow-hidden group transition-all duration-300 ${
         userType === "recruiter"
           ? "bg-gradient-to-br from-slate-800 to-slate-700"
           : "bg-gradient-to-br from-slate-900 to-slate-800"
@@ -389,38 +389,38 @@ const LoginForm = ({ userType }) => {
     >
       <div className="absolute -top-1/2 left-1/2 w-[300%] h-[300%] bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500 opacity-10 rotate-45 group-hover:scale-110 transition-all duration-700 blur-3xl pointer-events-none"></div>
 
-      <h1 className="text-4xl font-extrabold text-white text-center mb-10">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white text-center mb-8 lg:mb-10">
         {userType === "recruiter" ? "Recruiter Login" : "Candidate Login"}
       </h1>
 
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-4 lg:gap-6">
         {/* Email Field */}
         <div className="animate-fade-in">
-          <label className="text-white text-sm font-medium mb-1 block">Email</label>
+          <label className="text-white text-sm lg:text-base font-medium mb-2 block">Email</label>
           <input
             type="email"
             placeholder="you@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full py-3 px-4 rounded-xl bg-white/90 text-black focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-black/50 text-md shadow-lg"
+            className="w-full py-3 lg:py-4 px-4 rounded-xl bg-white/90 text-black focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-black/50 text-sm lg:text-base shadow-lg transition-all duration-300"
             required
           />
         </div>
 
         {/* Password Field */}
         <div className="animate-fade-in">
-          <label className="text-white text-sm font-medium mb-1 block">Password</label>
+          <label className="text-white text-sm lg:text-base font-medium mb-2 block">Password</label>
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full py-3 px-4 rounded-xl bg-white/90 text-black focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-black/50 text-md shadow-lg pr-12"
+              className="w-full py-3 lg:py-4 px-4 rounded-xl bg-white/90 text-black focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder:text-black/50 text-sm lg:text-base shadow-lg pr-12 transition-all duration-300"
               required
             />
             <div
-              className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer hover:scale-110 transition-all"
+              className="absolute top-1/2 right-4 transform -translate-y-1/2 cursor-pointer hover:scale-110 transition-all duration-300"
               onClick={() => setShowPassword((prev) => !prev)}
             >
               {showPassword ? (
@@ -436,7 +436,7 @@ const LoginForm = ({ userType }) => {
         <button
           type="submit"
           disabled={isLoading}
-          className={`w-full py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-500 text-white font-bold tracking-wide shadow-lg hover:opacity-95 hover:shadow-2xl transition-all duration-300 ${
+          className={`w-full py-3 lg:py-4 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-500 text-white font-bold tracking-wide shadow-lg hover:from-purple-700 hover:to-indigo-600 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 ${
             isLoading && "opacity-50 cursor-not-allowed"
           }`}
         >
@@ -444,11 +444,11 @@ const LoginForm = ({ userType }) => {
         </button>
 
         {/* Register Link */}
-        <p className="text-center text-sm text-gray-300 mt-4">
+        <p className="text-center text-sm lg:text-base text-gray-300 mt-4">
           New here?{" "}
           <Link
             to={`/register/${userType === "recruiter" ? "recruiter" : "candidate"}`}
-            className="text-purple-400 hover:underline font-semibold transition-all"
+            className="text-purple-400 hover:text-purple-300 hover:underline font-semibold transition-all duration-300"
           >
             Create an Account
           </Link>

@@ -132,8 +132,7 @@ const FeaturedJobsSection = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        // const res = await fetch("api/v1/jobs"); deployment
-        const res = await fetch(`${baseURL}/api/v1/jobs`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/jobs`);
         
         const data = await res.json();
         setJobs(data.slice(0, 3)); // Show only 3 jobs
@@ -159,53 +158,53 @@ const FeaturedJobsSection = () => {
   };
 
   return (
-    <section className="bg-[#f5f7fa] py-16">
+    <section className="bg-gradient-to-br from-gray-50 to-blue-50 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900">Featured Jobs</h2>
-          <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">Featured Jobs</h2>
+          <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Explore top job openings from leading companies hiring now
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {jobs.map((job, idx) => (
             <div
               key={idx}
-              className="bg-white border-2 border-blue-200 hover:border-blue-600 shadow-lg hover:shadow-xl rounded-xl p-6 transition-all duration-300 transform hover:scale-[1.03]"
+              className="bg-white border border-gray-200 hover:border-blue-500 shadow-lg hover:shadow-2xl rounded-2xl p-6 lg:p-8 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group"
             >
-              <h3 className="text-xl font-bold text-blue-800">{job.position}</h3>
-              <div className="mt-2 flex items-center text-gray-700 text-sm">
+              <h3 className="text-xl lg:text-2xl font-bold text-blue-800 group-hover:text-blue-600 transition-colors duration-300">{job.position}</h3>
+              <div className="mt-3 flex items-center text-gray-700 text-sm lg:text-base">
                 <Building2 className="w-4 h-4 mr-1" />
                 {job.company}
               </div>
-              <div className="mt-1 flex items-center text-gray-700 text-sm">
+              <div className="mt-2 flex items-center text-gray-700 text-sm lg:text-base">
                 <MapPin className="w-4 h-4 mr-1" />
                 {job.location}
               </div>
-              <div className="mt-1 flex items-center text-gray-700 text-sm">
+              <div className="mt-2 flex items-center text-gray-700 text-sm lg:text-base">
                 <Briefcase className="w-4 h-4 mr-1" />
                 {job.experience}
               </div>
-              <div className="mt-4 text-sm text-gray-600">
+              <div className="mt-4 text-sm lg:text-base text-gray-600 leading-relaxed">
                 {job.description?.slice(0, 80)}...
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-6 flex flex-wrap gap-2">
                 {job.skills?.slice(0, 3).map((skill, index) => (
                   <span
                     key={index}
-                    className="bg-blue-100 text-blue-700 text-xs font-medium px-2 py-1 rounded-full flex items-center gap-1"
+                    className="bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 hover:from-blue-200 hover:to-purple-200 transition-all duration-300"
                   >
                     <BadgeCheck className="w-3 h-3" /> {skill}
                   </span>
                 ))}
               </div>
 
-              <div className="mt-6">
+              <div className="mt-8">
                 <button
                   onClick={handleRedirectWithToast}
-                  className="inline-block px-4 py-2 bg-blue-700 text-white rounded-md text-sm font-semibold hover:bg-blue-800 transition"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl text-sm font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
                 >
                   View Details
                 </button>
@@ -214,10 +213,10 @@ const FeaturedJobsSection = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-16 text-center">
           <button
             onClick={handleRedirectWithToast}
-            className="inline-flex items-center px-6 py-3 text-base font-bold rounded-md text-white bg-blue-700 hover:bg-blue-800 transition-colors"
+            className="inline-flex items-center px-8 py-4 text-lg font-bold rounded-xl text-white bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             View All Jobs
           </button>

@@ -417,22 +417,22 @@ const RecruiterRegisterForm = () => {
     password !== confirmPassword;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br flex items-center justify-center px-4">
+    <div className="w-full flex items-center justify-center px-4 py-6">
       <form
         onSubmit={handleSubmit}
-        className="bg-gray-800 shadow-2xl p-10 rounded-3xl w-full max-w-6xl  text-white"
+        className="bg-gray-800 shadow-2xl p-6 sm:p-8 lg:p-12 rounded-3xl w-full max-w-5xl text-white"
       >
-        <h1 className="text-4xl font-extrabold mb-10 text-center">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-8 lg:mb-10 text-center">
           Recruiter Signup
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
           <input
             type="text"
             placeholder="Full Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="py-4 px-5 text-lg rounded-xl text-black placeholder-gray-500 font-semibold"
+            className="py-3 lg:py-4 px-4 lg:px-5 text-base lg:text-lg rounded-xl text-black placeholder-gray-500 font-semibold transition-all duration-300 focus:ring-2 focus:ring-purple-500 outline-none"
             required
           />
           <input
@@ -440,7 +440,7 @@ const RecruiterRegisterForm = () => {
             placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="py-4 px-5 text-lg rounded-xl text-black placeholder-gray-500 font-semibold"
+            className="py-3 lg:py-4 px-4 lg:px-5 text-base lg:text-lg rounded-xl text-black placeholder-gray-500 font-semibold transition-all duration-300 focus:ring-2 focus:ring-purple-500 outline-none"
             required
           />
 
@@ -451,13 +451,13 @@ const RecruiterRegisterForm = () => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="py-4 px-5 text-lg w-full rounded-xl text-black placeholder-gray-500 font-semibold pr-12"
+              className="py-3 lg:py-4 px-4 lg:px-5 text-base lg:text-lg w-full rounded-xl text-black placeholder-gray-500 font-semibold pr-12 transition-all duration-300 focus:ring-2 focus:ring-purple-500 outline-none"
               required
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-black"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-black hover:scale-110 transition-transform duration-300"
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
@@ -470,18 +470,18 @@ const RecruiterRegisterForm = () => {
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className={`py-4 px-5 text-lg w-full rounded-xl text-black placeholder-gray-500 font-semibold pr-12 ${
+              className={`py-3 lg:py-4 px-4 lg:px-5 text-base lg:text-lg w-full rounded-xl text-black placeholder-gray-500 font-semibold pr-12 transition-all duration-300 focus:ring-2 outline-none ${
                 confirmPassword &&
                 (password === confirmPassword
-                  ? "border-green-500 outline-green-500"
-                  : "border-red-500 outline-red-500")
+                  ? "border-green-500 focus:ring-green-500"
+                  : "border-red-500 focus:ring-red-500")
               }`}
               required
             />
             <button
               type="button"
               onClick={() => setShowConfirm(!showConfirm)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-black"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-black hover:scale-110 transition-transform duration-300"
             >
               {showConfirm ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
@@ -492,7 +492,7 @@ const RecruiterRegisterForm = () => {
             placeholder="Company Name"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
-            className="py-4 px-5 text-lg rounded-xl text-black placeholder-gray-500 font-semibold"
+            className="py-3 lg:py-4 px-4 lg:px-5 text-base lg:text-lg rounded-xl text-black placeholder-gray-500 font-semibold transition-all duration-300 focus:ring-2 focus:ring-purple-500 outline-none"
             required
           />
           <input
@@ -500,7 +500,7 @@ const RecruiterRegisterForm = () => {
             placeholder="Location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="py-4 px-5 text-lg rounded-xl text-black placeholder-gray-500 font-semibold"
+            className="py-3 lg:py-4 px-4 lg:px-5 text-base lg:text-lg rounded-xl text-black placeholder-gray-500 font-semibold transition-all duration-300 focus:ring-2 focus:ring-purple-500 outline-none"
             required
           />
         </div>
@@ -517,7 +517,7 @@ const RecruiterRegisterForm = () => {
         <button
           type="submit"
           disabled={isLoading || isFormInvalid}
-          className={`mt-10 w-full py-4 rounded-xl text-lg font-bold transition-all duration-200 ${
+          className={`mt-8 lg:mt-10 w-full py-3 lg:py-4 rounded-xl text-base lg:text-lg font-bold transition-all duration-300 transform hover:scale-105 ${
             isFormInvalid
               ? "bg-green-600 opacity-50 cursor-not-allowed"
               : "bg-green-600 hover:bg-green-700"
@@ -530,11 +530,11 @@ const RecruiterRegisterForm = () => {
           <p className="text-red-500 text-center mt-4 font-semibold">{error}</p>
         )}
 
-        <p className="text-center text-gray-400 mt-6">
+        <p className="text-center text-gray-400 mt-6 text-sm lg:text-base">
           Already Registered?{" "}
           <Link
             to="/login/recruiter"
-            className="text-purple-400 hover:underline font-semibold"
+            className="text-purple-400 hover:text-purple-300 hover:underline font-semibold transition-colors duration-300"
           >
             Login here
           </Link>

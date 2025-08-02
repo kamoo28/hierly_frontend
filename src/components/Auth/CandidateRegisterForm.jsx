@@ -404,55 +404,55 @@ const CandidateRegisterForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr  px-4 py-10">
+    <div className="w-full flex items-center justify-center px-4 py-6">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-5xl bg-slate-800 rounded-2xl shadow-xl p-12 space-y-8"  // Changed background to bg-slate-500
+        className="w-full max-w-4xl bg-slate-800 rounded-2xl shadow-2xl p-6 sm:p-8 lg:p-12 space-y-6 lg:space-y-8"
       >
-        <h2 className="text-4xl font-bold text-center text-slate-100">Candidate Sign Up</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-slate-100">Candidate Sign Up</h2>
 
         {error && (
           <p className="text-red-600 text-center font-semibold">{error}</p>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
           <div className="space-y-2">
-            <label className="block text-slate-100 font-medium">Full Name</label>
+            <label className="block text-slate-100 font-medium text-sm lg:text-base">Full Name</label>
             <input
               type="text"
               placeholder="Enter your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-purple-500 outline-none text-slate-800"
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none text-slate-800 transition-all duration-300"
               required
             />
           </div>
 
           <div className="space-y-2">
-            <label className="block text-slate-100 font-medium">Email</label>
+            <label className="block text-slate-100 font-medium text-sm lg:text-base">Email</label>
             <input
               type="email"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-purple-500 outline-none text-slate-800"
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none text-slate-800 transition-all duration-300"
               required
             />
           </div>
 
           <div className="space-y-2">
-            <label className="block text-slate-100 font-medium">Password</label>
+            <label className="block text-slate-100 font-medium text-sm lg:text-base">Password</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Create a password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-purple-500 outline-none text-slate-800"
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none text-slate-800 pr-12 transition-all duration-300"
                 required
               />
               <div
-                className="absolute top-3 right-3 cursor-pointer"
+                className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer hover:scale-110 transition-transform duration-300"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
@@ -465,7 +465,7 @@ const CandidateRegisterForm = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="block text-slate-100 font-medium">
+            <label className="block text-slate-100 font-medium text-sm lg:text-base">
               Confirm Password
             </label>
             <div className="relative">
@@ -474,7 +474,7 @@ const CandidateRegisterForm = () => {
                 placeholder="Confirm your password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className={`w-full px-4 py-2 border rounded-md outline-none text-slate-800 ${
+                className={`w-full px-4 py-3 border rounded-lg outline-none text-slate-800 pr-12 transition-all duration-300 ${
                   confirmPassword
                     ? password === confirmPassword
                       ? "border-green-500 focus:ring-green-500"
@@ -484,7 +484,7 @@ const CandidateRegisterForm = () => {
                 required
               />
               <div
-                className="absolute top-3 right-3 cursor-pointer"
+                className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer hover:scale-110 transition-transform duration-300"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
                 {showConfirmPassword ? (
@@ -498,7 +498,7 @@ const CandidateRegisterForm = () => {
         </div>
 
         <div className="space-y-2">
-          <label className="block text-slate-100 font-medium">Skills</label>
+          <label className="block text-slate-100 font-medium text-sm lg:text-base">Skills</label>
           <Creatable
             options={skillOptions}
             isMulti
@@ -528,16 +528,16 @@ const CandidateRegisterForm = () => {
             password !== confirmPassword
               ? "bg-purple-300 cursor-not-allowed"
               : "bg-purple-600 hover:bg-purple-700"
-          }`}
+          } transform hover:scale-105 transition-all duration-300`}
         >
           {isLoading ? "Registering..." : "Register"}
         </button>
 
-        <p className="text-center text-slate-600">
+        <p className="text-center text-slate-300 text-sm lg:text-base">
           Already registered?{" "}
           <Link
             to="/login/candidate"
-            className="text-purple-600 hover:underline font-medium"
+            className="text-purple-400 hover:text-purple-300 hover:underline font-medium transition-colors duration-300"
           >
             Login here
           </Link>

@@ -20,29 +20,30 @@ import { Search } from "lucide-react"; // Assuming you're using lucide-react or 
 
 const HeroSection = () => {
   return (
-    <div className="bg-gradient-to-r from-blue-300 to-blue-300 text-slate-700">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <div className="bg-gradient-to-br from-blue-50 via-orange-50 to-purple-50 text-slate-700 min-h-screen flex items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           
           {/* Left Content */}
-          <div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-              Find Your Dream <br /> <span className="text-slate-700">Job Today</span>
+          <div className="text-center lg:text-left">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight tracking-tight mb-6">
+              Find Your Dream <br className="hidden sm:block" /> 
+              <span className="bg-gradient-to-r from-orange-600 to-purple-600 bg-clip-text text-transparent">Job Today</span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-slate-600">
+            <p className="mt-6 text-lg sm:text-xl lg:text-2xl text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               Connect with thousands of employers and take the next step in your career.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link
                 to="/browse-jobs"
-                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-semibold rounded-md text-blue-700 bg-white hover:bg-blue-50 transition"
+                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold rounded-xl text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 <Search className="w-5 h-5 mr-2" />
                 Browse Jobs
               </Link>
               <Link
                 to="/register/candidate"
-                className="inline-flex items-center justify-center px-6 py-3 border border-white text-base font-semibold rounded-md text-white hover:bg-white hover:text-blue-700 transition"
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-orange-600 text-base font-bold rounded-xl text-orange-600 hover:bg-orange-600 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Create Account
               </Link>
@@ -50,11 +51,11 @@ const HeroSection = () => {
           </div>
 
           {/* Right Image */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <img
               src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               alt="People in meeting"
-              className="rounded-xl shadow-2xl w-full object-cover"
+              className="rounded-2xl shadow-2xl w-full h-[500px] xl:h-[600px] object-cover transform hover:scale-105 transition-transform duration-500"
             />
           </div>
         </div>

@@ -18,7 +18,7 @@ const Home = () => {
   if (!isAuthenticated) { // till not authenticated thenn  showw thesee okk 
     return (
       // <div className="pt-40 px-32">
-      <div className="pt-16 px-0">
+      <div className="pt-16">
 
         <HeroSection /> 
 {/*           <FeaturedJobsSection/> */}
@@ -64,23 +64,25 @@ const Home = () => {
 // ui by chetn 
   // FOR CANDIDATES
 return (
-  <div className="pt-32 px-4 sm:px-10 md:px-20 lg:px-32 min-h-screen bg-gradient-to-b bg-zinc-300 text-gray-900">
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+  <div className="pt-20 px-4 sm:px-6 lg:px-8 min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
 
-      {/* Profile Section */}
-      <div className="md:col-span-1">
-        <div className="bg-white border border-gray-200 shadow-lg rounded-2xl p-6 sticky top-32">
-          <ProfileSection />
+        {/* Profile Section */}
+        <div className="lg:col-span-1">
+          <div className="bg-white border border-gray-200 shadow-lg rounded-2xl p-6 lg:sticky lg:top-24">
+            <ProfileSection />
+          </div>
         </div>
-      </div>
 
-      {/* Applications Section */}
-      <div className="md:col-span-2">
-        <div className="bg-white border border-gray-200 shadow-lg rounded-2xl p-6">
-          <ApplicationsSection />
+        {/* Applications Section */}
+        <div className="lg:col-span-2">
+          <div className="bg-white border border-gray-200 shadow-lg rounded-2xl p-6">
+            <ApplicationsSection />
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
 );

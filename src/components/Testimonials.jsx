@@ -95,33 +95,33 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div className="bg-white py-16">
+    <div className="bg-gradient-to-br from-gray-50 to-blue-50 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900">Success Stories</h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">Success Stories</h2>
+          <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Hear from people who found their dream jobs through our platform
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {testimonials.map((t, index) => (
             <div
               key={index}
-              className="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="bg-white p-6 lg:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group border border-gray-100"
             >
-              <div className="flex items-center mb-4">
+              <div className="flex items-center mb-6">
                 <img
-                  className="h-12 w-12 rounded-full object-cover"
+                  className="h-14 w-14 lg:h-16 lg:w-16 rounded-full object-cover shadow-md group-hover:shadow-lg transition-shadow duration-300"
                   src={t.image}
                   alt={t.name}
                 />
-                <div className="ml-4">
-                  <h4 className="text-lg font-medium text-gray-900">{t.name}</h4>
-                  <p className="text-sm text-gray-500">{t.position}</p>
+                <div className="ml-4 lg:ml-6">
+                  <h4 className="text-lg lg:text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">{t.name}</h4>
+                  <p className="text-sm lg:text-base text-gray-500 mt-1">{t.position}</p>
                 </div>
               </div>
-              <p className="text-gray-600 text-sm leading-relaxed">"{t.quote}"</p>
+              <p className="text-gray-600 text-sm lg:text-base leading-relaxed italic">"{t.quote}"</p>
             </div>
           ))}
         </div>
