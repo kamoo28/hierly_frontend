@@ -28,7 +28,7 @@
 //   const handleProtectedNavigation = (e, path) => {
 //     e.preventDefault();
 //     if (!isLoggedIn) {
-//       toast.error("Oops! You haven’t logged in. Please login to proceed.");
+//       toast.error("Oops! You haven't logged in. Please login to proceed.");
 //     } else {
 //       navigate(path);
 //     }
@@ -120,7 +120,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MapPin, Building2, Briefcase, BadgeCheck } from "lucide-react";
+import { MapPin, Building2, Briefcase, BadgeCheck, ArrowRight } from "lucide-react";
 import { toast } from "react-hot-toast";
 
 const FeaturedJobsSection = () => {
@@ -145,12 +145,13 @@ const FeaturedJobsSection = () => {
 
   const handleRedirectWithToast = () => {
     if (!isLoggedIn) {
-      toast.error("Please login to proceed!", {
+      toast.error("Please login to browse jobs!", {
         icon: "🔒",
         style: {
-          border: "1px solid #2563eb",
-          padding: "10px",
-          color: "#1e3a8a",
+          border: "1px solid #3b82f6",
+          padding: "12px",
+          color: "#1e40af",
+          borderRadius: "12px",
         },
       });
       navigate("/login/candidate");
@@ -204,9 +205,10 @@ const FeaturedJobsSection = () => {
               <div className="mt-8">
                 <button
                   onClick={handleRedirectWithToast}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl text-sm font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl text-sm font-bold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 group"
                 >
                   View Details
+                  <ArrowRight className="w-4 h-4 ml-2 inline group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
               </div>
             </div>
@@ -216,9 +218,10 @@ const FeaturedJobsSection = () => {
         <div className="mt-16 text-center">
           <button
             onClick={handleRedirectWithToast}
-            className="inline-flex items-center px-8 py-4 text-lg font-bold rounded-xl text-white bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+            className="inline-flex items-center px-8 py-4 text-lg font-bold rounded-xl text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             View All Jobs
+            <ArrowRight className="w-5 h-5 ml-2" />
           </button>
         </div>
       </div>
