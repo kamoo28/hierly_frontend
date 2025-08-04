@@ -311,14 +311,14 @@ const JobsList = ({
   );
 
   return (
-    <div className="bg-slate-500 min-h-screen p-6 text-white">
-      <div className="flex items-center justify-between flex-wrap mb-6">
-        <h1 className="text-3xl font-bold mb-4">🚀 Available Jobs</h1>
+    <div className="min-h-screen p-6">
+      <div className="flex items-center justify-between flex-wrap mb-8">
+        <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">🚀 Available Jobs</h1>
 
         {isRecruiter && (
           <button
             onClick={() => navigate("/postjob")}
-            className="py-2 px-6 bg-green-600 hover:bg-green-700 rounded-lg text-white text-lg font-bold"
+            className="py-3 px-6 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 rounded-xl text-white text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             + Post New Job
           </button>
@@ -326,14 +326,14 @@ const JobsList = ({
       </div>
 
       {/* Search Bar */}
-      <div className="flex items-center gap-2 mb-6 bg-slate-800 rounded-lg p-3 shadow-lg">
+      <div className="flex items-center gap-2 mb-8 bg-white rounded-xl p-4 shadow-lg border border-gray-200">
         <FaSearch className="text-xl text-gray-400" />
         <input
           type="text"
           placeholder="Search by title, company, location, skills..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full bg-transparent focus:outline-none text-white placeholder-gray-400"
+          className="w-full bg-transparent focus:outline-none text-gray-800 placeholder-gray-500"
         />
       </div>
 
@@ -342,26 +342,26 @@ const JobsList = ({
           filteredJobs.map((job) => (
             <div
               key={job.id}
-              className="bg-slate-800 p-5 rounded-xl shadow-md hover:shadow-lg transition-all border border-slate-700 flex flex-col justify-between h-full"
+              className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200 hover:border-blue-500 flex flex-col justify-between h-full transform hover:scale-105"
             >
               <div>
-                <h2 className="text-xl font-semibold mb-2 flex items-center gap-2">
+                <h2 className="text-xl font-bold mb-3 flex items-center gap-2 text-gray-800 hover:text-blue-600 transition-colors duration-300">
                   <FaBriefcase /> {job.position}
                 </h2>
-                <p className="mb-1 text-gray-300 flex items-center gap-2">
+                <p className="mb-2 text-gray-600 flex items-center gap-2">
                   <FaBuilding /> {job.company}
                 </p>
-                <p className="mb-1 text-gray-400 flex items-center gap-2">
+                <p className="mb-2 text-gray-600 flex items-center gap-2">
                   <FaMapMarkerAlt /> {job.location}
                 </p>
-                <p className="text-sm text-yellow-400">{job.experience} experience required</p>
+                <p className="text-sm text-blue-600 font-semibold">{job.experience} experience required</p>
               </div>
 
               <div className="flex flex-wrap gap-2 mt-4">
                 {job.skills.map((skill, idx) => (
                   <span
                     key={idx}
-                    className="bg-slate-700 text-xs text-white px-2 py-1 rounded-md border border-slate-600"
+                    className="bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full"
                   >
                     {skill}
                   </span>
@@ -373,7 +373,7 @@ const JobsList = ({
                   <button
                     onClick={() => handleDeleteClick(job)}
                     disabled={actionLoading}
-                    className={`w-full py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white font-semibold transition-opacity ${
+                    className={`w-full py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 rounded-xl text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 ${
                       actionLoading && "opacity-40 cursor-not-allowed"
                     }`}
                   >
@@ -383,7 +383,7 @@ const JobsList = ({
                   <button
                     onClick={() => handleApplyClick(job)}
                     disabled={isRecruiter}
-                    className={`w-full py-2 bg-green-600 hover:bg-green-700 rounded-lg text-white font-semibold transition-opacity ${
+                    className={`w-full py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 rounded-xl text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 ${
                       isRecruiter && "opacity-30 cursor-not-allowed"
                     }`}
                   >
@@ -394,7 +394,12 @@ const JobsList = ({
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-400 col-span-full">No jobs found matching your search.</p>
+          <div className="col-span-full text-center py-12">
+            <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200 max-w-md mx-auto">
+              <h3 className="text-xl font-bold text-gray-800 mb-2">No Jobs Found</h3>
+              <p className="text-gray-600">No jobs found matching your search criteria.</p>
+            </div>
+          </div>
         )}
       </div>
     </div>

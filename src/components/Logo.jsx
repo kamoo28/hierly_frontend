@@ -2,9 +2,9 @@ import { Briefcase } from "lucide-react";
 
 const Logo = ({ className = "", size = "default", ...props }) => {
   const sizeClasses = {
-    small: "text-xl",
-    default: "text-2xl lg:text-3xl",
-    large: "text-3xl lg:text-4xl xl:text-5xl"
+    small: "text-lg",
+    default: "text-xl lg:text-2xl",
+    large: "text-2xl lg:text-3xl xl:text-4xl"
   };
 
   return (
@@ -13,9 +13,9 @@ const Logo = ({ className = "", size = "default", ...props }) => {
       {...props}
     >
       <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-2 rounded-xl shadow-lg">
-        <Briefcase className="text-white w-6 h-6 lg:w-8 lg:h-8" />
+        <Briefcase className="text-white w-5 h-5 lg:w-6 lg:h-6" />
       </div>
-      <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-extrabold">
         Hierly
       </span>
     </div>

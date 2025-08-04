@@ -110,41 +110,50 @@ const JobListings = () => {
   };
 
   return (
-    // <div className="pt-40 px-32">
-    <div className="pt-16 ">
+    <div className="pt-20 px-4 sm:px-6 lg:px-8 min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+      <div className="max-w-7xl mx-auto">
 
-      {isLoading ? (
-        <div>
-          <p className="text-white text-lg font-bold">Loading...</p>
-        </div>
-      ) : jobs.length > 0 ? (
-        <JobsList
-          actionLoading={actionLoading}
-          jobs={jobs}
-          onApply={openApplicationModal}
-          onDelete={deleteJob}
-          setSelectedJob={setSelectedJob}
+        {isLoading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="relative">
+              <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-200 border-t-blue-600"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-blue-600 font-semibold">Loading...</span>
+              </div>
+            </div>
+          </div>
+        ) : jobs.length > 0 ? (
+          <JobsList
+            actionLoading={actionLoading}
+            jobs={jobs}
+            onApply={openApplicationModal}
+            onDelete={deleteJob}
+            setSelectedJob={setSelectedJob}
+          />
+        ) : (
+          <div className="text-center py-20">
+            <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200 max-w-md mx-auto">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">No Jobs Available</h3>
+              <p className="text-gray-600">
+                No available jobs to show! Please check back later.
+              </p>
+            </div>
+          </div>
+        )}
+
+        <JobApplication
+          isOpen={isJobApplicationModalOpen}
+          onClose={closeApplicationModal}
+          job={selectedJob}
+          applyForJob={applyForJob}
         />
-      ) : (
-        <div>
-          <p className="text-white text-lg font-bold">
-            No available jobs to show! Kindly check later
-          </p>
-        </div>
-      )}
 
-      <JobApplication
-        isOpen={isJobApplicationModalOpen}
-        onClose={closeApplicationModal}
-        job={selectedJob}
-        applyForJob={applyForJob}
-      />
-
-      <Confirmation
-        isOpen={isConfirmationModalOpen}
-        onClose={closeConfirmationModal}
-        message={confirmationMessage}
-      />
+        <Confirmation
+          isOpen={isConfirmationModalOpen}
+          onClose={closeConfirmationModal}
+          message={confirmationMessage}
+        />
+      </div>
     </div>
   );
 };

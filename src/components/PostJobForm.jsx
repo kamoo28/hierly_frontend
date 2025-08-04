@@ -84,87 +84,98 @@ const PostJobForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="p-14 mb-24 bg-slate-800 w-full max-w-3xl 2xl:max-w-5xl rounded-lg flex flex-col gap-4 2xl:gap-10 mx-auto"
+      className="p-8 lg:p-12 mb-24 bg-white w-full max-w-4xl rounded-2xl shadow-2xl border border-gray-200 flex flex-col gap-6 mx-auto"
     >
-      <h1 className="text-2xl 2xl:text-4xl font-bold text-white text-center mb-8 2xl:mb-12">
+      <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 text-center mb-8">
         Post New Job
       </h1>
 
       <div>
+        <label className="block text-gray-700 font-semibold mb-2">Position</label>
         <input
           type="text"
           placeholder="Position (e.g. Software Engineer)"
           value={position}
           onChange={(e) => setPosition(e.target.value)}
-          className="w-full py-2 px-4 text-lg rounded-lg text-black/80 font-semibold"
+          className="w-full py-3 px-4 text-lg rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-300"
           required={true}
         />
       </div>
 
       <div>
+        <label className="block text-gray-700 font-semibold mb-2">Company</label>
         <input
           type="text"
           value={company}
           readOnly={true}
-          className="w-full py-1 px-4 rounded-lg text-black font-semibold bg-white/75"
+          className="w-full py-3 px-4 rounded-xl border border-gray-300 bg-gray-100 text-gray-700 font-semibold"
           required={true}
         />
       </div>
 
       <div>
+        <label className="block text-gray-700 font-semibold mb-2">Location</label>
         <input
           type="text"
           value={location}
           readOnly={true}
-          className="w-full py-1 px-4 rounded-lg text-black font-semibold bg-white/75"
+          className="w-full py-3 px-4 rounded-xl border border-gray-300 bg-gray-100 text-gray-700 font-semibold"
           required={true}
         />
       </div>
 
-      <div className="mt-6">
+      <div>
+        <label className="block text-gray-700 font-semibold mb-2">Experience Required</label>
         <input
           type="text"
           placeholder="Experience Required (e.g. 3+ years)"
           value={experience}
           onChange={(e) => setExperience(e.target.value)}
-          className="w-full py-2 px-4 text-lg rounded-lg text-black/80 font-semibold"
+          className="w-full py-3 px-4 text-lg rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-300"
           required={true}
         />
       </div>
 
       <div>
+        <label className="block text-gray-700 font-semibold mb-2">Job Description</label>
         <textarea
           cols="30"
           rows="5"
           placeholder="Job Description..."
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="w-full py-2 px-4 rounded-lg text-black/80 font-medium"
+          className="w-full py-3 px-4 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-300 resize-none"
         ></textarea>
       </div>
 
       <div>
-        <h3 className="text-lg text-white mb-2 font-medium">Skills Required</h3>
+        <label className="block text-gray-700 font-semibold mb-2">Skills Required</label>
         <Creatable
           options={skillOptions}
           isMulti
           value={skills}
           onChange={(selectedOptions) => setSkills(selectedOptions)}
+          className="text-gray-800"
+          classNamePrefix="select"
         />
       </div>
 
       <button
         type="submit"
         disabled={isLoading}
-        className={`mt-8 py-2 px-4 bg-green-500 hover:opacity-70 rounded-lg text-white text-lg font-bold transition-opacity ${
-          isLoading && "opacity-30 hover:opacity-40"
+        className={`mt-8 py-4 px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl text-white text-lg font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 ${
+          isLoading && "opacity-50 cursor-not-allowed"
         }`}
       >
-        Post Job
+        {isLoading ? "Posting Job..." : "Post Job"}
       </button>
 
       {/* ERROR NOTIFICATION */}
-      <p className="text-red-500 text-center text-lg font-black">{error}</p>
+      {error && (
+        <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+          <p className="text-red-600 text-center font-semibold">{error}</p>
+        </div>
+      )}
     </form>
   );
 };
