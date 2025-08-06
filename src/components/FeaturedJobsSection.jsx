@@ -132,12 +132,30 @@ const FeaturedJobsSection = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/jobs`);
+        const apiUrl = import.meta.env.VITE_API_URL;
+        if (!apiUrl || apiUrl === "Backend url") {
+          console.warn("API URL not configured, using mock data");
+          setJobs([]);
+          return;
+        }
+        
+        const res = await fetch(`${apiUrl}/api/v1/jobs`);
+        
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        
+        const contentType = res.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("Response is not JSON");
+        }
         
         const data = await res.json();
         setJobs(data.slice(0, 3)); // Show only 3 jobs
       } catch (error) {
         console.error("Failed to fetch jobs:", error);
+        // Set empty array on error to prevent UI issues
+        setJobs([]);
       }
     };
     fetchJobs();
