@@ -81,12 +81,13 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <button
+            <NavLink 
+              to="/browse-jobs" 
               onClick={handleBrowseJobsClick}
-              className="px-4 py-2 rounded-xl transition duration-300 font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+              className={navLinkClass}
             >
               Browse Jobs
-            </button>
+            </NavLink>
           </li>
           <li>
             <NavLink to="/about" className={navLinkClass}>
@@ -145,30 +146,55 @@ const Header = () => {
           <div className="px-4 py-6 space-y-4">
             <NavLink
               to="/"
-              className="block px-4 py-3 rounded-xl font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300"
+              className={({ isActive }) =>
+                `block px-4 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                  isActive 
+                    ? "text-blue-600 bg-blue-50 shadow-md" 
+                    : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                }`
+              }
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Home
             </NavLink>
-            <button
+            <NavLink
+              to="/browse-jobs"
               onClick={(e) => {
                 handleBrowseJobsClick(e);
                 setIsMobileMenuOpen(false);
               }}
-              className="block w-full text-left px-4 py-3 rounded-xl font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300"
+              className={({ isActive }) =>
+                `block px-4 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                  isActive 
+                    ? "text-blue-600 bg-blue-50 shadow-md" 
+                    : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                }`
+              }
             >
               Browse Jobs
-            </button>
+            </NavLink>
             <NavLink
               to="/about"
-              className="block px-4 py-3 rounded-xl font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300"
+              className={({ isActive }) =>
+                `block px-4 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                  isActive 
+                    ? "text-blue-600 bg-blue-50 shadow-md" 
+                    : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                }`
+              }
               onClick={() => setIsMobileMenuOpen(false)}
             >
               About Us
             </NavLink>
             <NavLink
               to="/contact"
-              className="block px-4 py-3 rounded-xl font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300"
+              className={({ isActive }) =>
+                `block px-4 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                  isActive 
+                    ? "text-blue-600 bg-blue-50 shadow-md" 
+                    : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                }`
+              }
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact Us
