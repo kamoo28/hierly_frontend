@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User, Briefcase, LogOut } from "lucide-react";
 import api from "../../api/axiosConfig";
 import { logout as storeLogout } from "../../store/authSlice";
 import toast from "react-hot-toast";
@@ -12,6 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const isRecruiter = useSelector((state) => state.auth.isRecruiter);
+  const userData = useSelector((state) => state.auth.userData);
   const [isLoading, setIsLoading] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -59,7 +60,7 @@ const Header = () => {
   };
 
   const navLinkClass = ({ isActive }) =>
-    `px-4 py-2 rounded-xl transition duration-300 font-semibold ${
+    `px-4 py-2 rounded-xl transition duration-300 font-semibold text-base ${
       isActive 
         ? "text-blue-600 bg-blue-50 shadow-md" 
         : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
@@ -74,20 +75,19 @@ const Header = () => {
         </NavLink>
 
         {/* Desktop Navigation Links */}
-        <ul className="hidden lg:flex space-x-8">
+        <ul className="hidden lg:flex items-center space-x-8">
           <li>
             <NavLink to="/" className={navLinkClass}>
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink 
-              to="/browse-jobs" 
+            <button 
               onClick={handleBrowseJobsClick}
-              className={navLinkClass}
+              className="px-4 py-2 rounded-xl transition duration-300 font-semibold text-base text-gray-700 hover:text-blue-600 hover:bg-blue-50"
             >
               Browse Jobs
-            </NavLink>
+            </button>
           </li>
           <li>
             <NavLink to="/about" className={navLinkClass}>
@@ -101,32 +101,65 @@ const Header = () => {
           </li>
         </ul>
 
-        {/* Desktop Auth Buttons */}
+        {/* Desktop Auth Section */}
         <div className="hidden lg:flex items-center space-x-4">
           {isAuthenticated ? (
-            <button
-              onClick={handleLogout}
-              disabled={isLoading}
-              className={`py-2 px-6 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:from-red-600 hover:to-red-700 transform hover:scale-105 ${
-                isLoading ? "opacity-40" : ""
-              }`}
-            >
-              {isLoading ? "Logging out..." : "Logout"}
-            </button>
+            <div className="flex items-center space-x-4">
+              {/* User Info */}
+              <div className="flex items-center space-x-2 px-4 py-2 bg-gray-100 rounded-xl">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">
+                    {userData?.name?.charAt(0)?.toUpperCase()}
+                  </span>
+                </div>
+                <div className="text-sm">
+                  <p className="font-semibold text-gray-800">{userData?.name}</p>
+                  <p className="text-gray-600 text-xs">
+                    {isRecruiter ? "Recruiter" : "Job Seeker"}
+                  </p>
+                </div>
+              </div>
+
+              {/* Post Job Button for Recruiters */}
+              {isRecruiter && (
+                <button
+                  onClick={() => navigate("/postjob")}
+                  className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                >
+                  <Briefcase className="w-4 h-4" />
+                  <span>Post Job</span>
+                </button>
+              )}
+
+              {/* Logout Button */}
+              <button
+                onClick={handleLogout}
+                disabled={isLoading}
+                className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:from-red-600 hover:to-red-700 transform hover:scale-105"
+              >
+                <LogOut className="w-4 h-4" />
+                <span>{isLoading ? "Logging out..." : "Logout"}</span>
+              </button>
+            </div>
           ) : (
-            <div className="flex space-x-3">
-              <button
-                onClick={() => navigate("/login/recruiter")}
-                className="py-2 px-5 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl font-semibold hover:from-purple-700 hover:to-purple-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-              >
-                Recruiter Login
-              </button>
-              <button
-                onClick={() => navigate("/login/candidate")}
-                className="py-2 px-5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-              >
-                Candidate Login
-              </button>
+            <div className="flex items-center space-x-3">
+              {/* Clear Role-Based Login Buttons */}
+              <div className="flex items-center space-x-2 bg-gray-50 rounded-xl p-1">
+                <button
+                  onClick={() => navigate("/login/candidate")}
+                  className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
+                >
+                  <User className="w-4 h-4" />
+                  <span>Job Seeker</span>
+                </button>
+                <button
+                  onClick={() => navigate("/login/recruiter")}
+                  className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-purple-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
+                >
+                  <Briefcase className="w-4 h-4" />
+                  <span>Recruiter</span>
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -144,6 +177,7 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg shadow-xl border-b border-gray-200">
           <div className="px-4 py-6 space-y-4">
+            {/* Navigation Links */}
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -157,22 +191,15 @@ const Header = () => {
             >
               Home
             </NavLink>
-            <NavLink
-              to="/browse-jobs"
+            <button
               onClick={(e) => {
                 handleBrowseJobsClick(e);
                 setIsMobileMenuOpen(false);
               }}
-              className={({ isActive }) =>
-                `block px-4 py-3 rounded-xl font-semibold transition-all duration-300 ${
-                  isActive 
-                    ? "text-blue-600 bg-blue-50 shadow-md" 
-                    : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-                }`
-              }
+              className="block w-full text-left px-4 py-3 rounded-xl font-semibold transition-all duration-300 text-gray-700 hover:text-blue-600 hover:bg-blue-50"
             >
               Browse Jobs
-            </NavLink>
+            </button>
             <NavLink
               to="/about"
               className={({ isActive }) =>
@@ -200,37 +227,74 @@ const Header = () => {
               Contact Us
             </NavLink>
             
+            {/* Mobile Auth Section */}
             <div className="pt-4 border-t border-gray-200">
               {isAuthenticated ? (
-                <button
-                  onClick={(e) => {
-                    handleLogout(e);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  disabled={isLoading}
-                  className="w-full py-3 px-4 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
-                >
-                  {isLoading ? "Logging out..." : "Logout"}
-                </button>
-              ) : (
                 <div className="space-y-3">
+                  {/* User Info */}
+                  <div className="flex items-center space-x-3 px-4 py-3 bg-gray-50 rounded-xl">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold">
+                        {userData?.name?.charAt(0)?.toUpperCase()}
+                      </span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-800">{userData?.name}</p>
+                      <p className="text-gray-600 text-sm">
+                        {isRecruiter ? "Recruiter" : "Job Seeker"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Post Job Button for Recruiters */}
+                  {isRecruiter && (
+                    <button
+                      onClick={() => {
+                        navigate("/postjob");
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                    >
+                      <Briefcase className="w-4 h-4" />
+                      <span>Post Job</span>
+                    </button>
+                  )}
+
+                  {/* Logout Button */}
                   <button
-                    onClick={() => {
-                      navigate("/login/recruiter");
+                    onClick={(e) => {
+                      handleLogout(e);
                       setIsMobileMenuOpen(false);
                     }}
-                    className="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                    disabled={isLoading}
+                    className="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
-                    Recruiter Login
+                    <LogOut className="w-4 h-4" />
+                    <span>{isLoading ? "Logging out..." : "Logout"}</span>
                   </button>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  <p className="text-center text-gray-600 font-medium">Choose your role:</p>
                   <button
                     onClick={() => {
                       navigate("/login/candidate");
                       setIsMobileMenuOpen(false);
                     }}
-                    className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                    className="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
-                    Candidate Login
+                    <User className="w-4 h-4" />
+                    <span>I'm looking for a job</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate("/login/recruiter");
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+                  >
+                    <Briefcase className="w-4 h-4" />
+                    <span>I'm hiring talent</span>
                   </button>
                 </div>
               )}
